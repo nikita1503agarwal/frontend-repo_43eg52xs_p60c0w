@@ -15,32 +15,61 @@
   html {
     font-family: var(--font-sans);
     font-feature-settings: "rlig" 1, "calt" 1;
+    background: #000;
+    color-scheme: dark;
+    scroll-behavior: smooth;
   }
 
-  body {
-    @apply antialiased;
-  }
+  body { @apply antialiased; }
 }
 
-/* Custom utility classes for shadcn/ui patterns */
+/* Futuristic hologram helpers */
 @layer utilities {
-  .animate-in {
-    animation-name: animateIn;
-    animation-duration: 350ms;
-    --tw-enter-opacity: initial;
-    --tw-enter-scale: initial;
-    --tw-enter-rotate: initial;
-    --tw-enter-translate-x: initial;
-    --tw-enter-translate-y: initial;
+  .hologram-grid {
+    background-image: linear-gradient(rgba(0, 255, 234, 0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(124, 58, 237, 0.08) 1px, transparent 1px);
+    background-size: 32px 32px, 32px 32px;
+    mask-image: radial-gradient(ellipse at center, black, transparent 65%);
+  }
+  .scanlines {
+    background: repeating-linear-gradient( to bottom, rgba(255,255,255,0.04), rgba(255,255,255,0.04) 1px, transparent 2px );
+  }
+  .neon-btn {
+    @apply inline-flex items-center justify-center px-5 py-3 rounded-lg font-semibold text-white relative overflow-hidden;
+  }
+  .neon-btn::after {
+    content: '';
+    position: absolute; inset: -2px;
+    border-radius: 12px;
+    filter: blur(10px);
+    opacity: .6; z-index: -1;
+  }
+  .neon-cyan { @apply bg-cyan-500/20 border border-cyan-400/40; }
+  .neon-cyan::after { background: radial-gradient(closest-side, rgba(34,211,238,.7), transparent); }
+  .neon-purple { @apply bg-purple-500/20 border border-purple-400/40; }
+  .neon-purple::after { background: radial-gradient(closest-side, rgba(168,85,247,.6), transparent); }
+  .neon-green { @apply bg-emerald-500/20 border border-emerald-400/40; }
+  .neon-green::after { background: radial-gradient(closest-side, rgba(16,185,129,.6), transparent); }
+
+  .mockup-card {
+    @apply rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl shadow-2xl;
+  }
+  .mockup-header {
+    @apply flex items-center gap-2 border-b border-white/10 px-4 py-3;
+  }
+  .mockup-header .dot { @apply w-2.5 h-2.5 rounded-full bg-white/30; }
+
+  .floating-badge {
+    @apply absolute -top-4 -right-2 md:-right-6 text-[11px] md:text-xs px-3 py-1 rounded-full border border-white/10 bg-white/10 backdrop-blur-md text-white/80 shadow-lg;
   }
 
-  .animate-out {
-    animation-name: animateOut;
-    animation-duration: 350ms;
-    --tw-exit-opacity: initial;
-    --tw-exit-scale: initial;
-    --tw-exit-rotate: initial;
-    --tw-exit-translate-x: initial;
-    --tw-exit-translate-y: initial;
+  .chat-bubble {
+    @apply max-w-[70%] rounded-2xl px-4 py-3 text-sm border; 
+  }
+  .chat-bubble.left { @apply bg-white/5 border-white/10; }
+  .chat-bubble.right { @apply bg-emerald-500/15 border-emerald-400/30 ml-auto; }
+
+  .neon-line {
+    background: radial-gradient(120% 70% at 50% 120%, rgba(34,211,238,.5), transparent 60%);
+    filter: blur(20px);
   }
 }
